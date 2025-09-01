@@ -38,7 +38,7 @@ function AppLayout() {
 
   return (
     <>
-      {/* <ScrollToTop /> */}
+      <ScrollToTop />
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -78,7 +78,7 @@ function AppRoutes() {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="/FAQs" element={<FAQs />} />
+      <Route path="/faqs" element={<FAQs />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="*" element={<NotFound />} />
 

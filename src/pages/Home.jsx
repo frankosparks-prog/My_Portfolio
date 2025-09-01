@@ -1,159 +1,241 @@
 // src/pages/Home.jsx
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
-import { FolderKanban, Mail, Code2, Palette, Rocket } from "lucide-react";
+import NET from "vanta/dist/vanta.net.min";
+import * as THREE from "three";
+import {
+  FolderKanban,
+  Mail,
+  Code2,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
 import { Link } from "react-router-dom";
+import SplashCursor from "../components/SplashCursor";
+import Tilt from "react-parallax-tilt";
 
 const Home = () => {
-  // tsParticles config
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
+  const vantaRef = useRef(null);
+  const [vantaEffect, setVantaEffect] = useState(null);
 
-  const particlesOptions = {
-    background: { color: "transparent" },
-    fpsLimit: 60,
-    interactivity: {
-      events: {
-        onHover: { enable: true, mode: "repulse" },
-        resize: true,
-      },
-      modes: { repulse: { distance: 100, duration: 0.4 } },
-    },
-    particles: {
-      color: { value: "#ffffff" },
-      links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.3, width: 1 },
-      move: { enable: true, speed: 2, outModes: { default: "out" } },
-      number: { value: 60, density: { enable: true, area: 800 } },
-      opacity: { value: 0.5 },
-      shape: { type: "circle" },
-      size: { value: { min: 1, max: 4 } },
-    },
-    detectRetina: true,
-  };
+  // Initialize Vanta.js
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        NET({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x00ffff,
+          backgroundColor: 0x0a0a0a,
+          points: 12.0,
+          maxDistance: 20.0,
+          spacing: 18.0,
+        })
+      );
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
-      {/* Particles Background */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={particlesOptions}
-        className="absolute inset-0 z-0"
-      />
+    <section
+      ref={vantaRef}
+      className="relative min-h-screen flex flex-col items-center text-center px-6 pt-20 pb-20 overflow-hidden text-white"
+    >
+      <SplashCursor />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
 
-      {/* Floating Gradient Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.15),transparent_70%)] animate-pulse"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.25),transparent_70%)] animate-pulse"></div>
-
-      {/* Hero Content */}
+      {/* ---------------- Hero Section ---------------- */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative z-10 max-w-4xl"
+        className="relative z-10 max-w-6xl w-full flex flex-col md:flex-row items-center justify-center gap-12"
       >
         {/* Profile Image */}
-        <motion.img
-          src="./me.jpg" // replace with your image path
-          alt="Profile"
-          className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto border-4 border-white shadow-lg"
+
+        {/* Profile Image */}
+        <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-        />
-
-        {/* Animated Text */}
-        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-          Hi, I’m{" "}
-          <span className="text-yellow-300">
-            <Typewriter
-              words={["Frank", "a Developer", "a Creator", "a Problem Solver"]}
-              loop={true}
-              cursor
-              cursorStyle="|"
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={1500}
-            />
-          </span>
-        </h1>
-
-        <motion.p
-          className="mt-4 text-lg md:text-2xl text-gray-100"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          className="relative"
         >
-          Full-Stack Developer | MERN Enthusiast | Creative Builder
-        </motion.p>
-
-        <motion.p
-          className="mt-6 text-gray-200 max-w-xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          I design and build modern web apps with stunning user experiences,
-          blending creativity with performance. Passionate about problem-solving
-          and turning ideas into reality.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          className="mt-8 flex flex-col md:flex-row gap-4 justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
-        >
-          <Link
-            to="/projects"
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-indigo-600 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition"
+          <Tilt
+            glareEnable={true}
+            glareMaxOpacity={0.45}
+            glareColor="#00ffff"
+            glarePosition="all"
+            tiltMaxAngleX={20}
+            tiltMaxAngleY={20}
+            className="rounded-3xl"
           >
-            <FolderKanban size={20} />
-            View Projects
-          </Link>
+            <div className="w-40 h-40 md:w-56 md:h-56 rounded-3xl border-4 border-cyan-400 shadow-lg overflow-hidden group">
+              <img
+                src="./me.jpg"
+                alt="Profile"
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+          </Tilt>
 
-          <Link
-            to="/contact"
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition"
-          >
-            <Mail size={20} />
-            Contact Me
-          </Link>
+          {/* Glowing ring */}
+          <div className="absolute inset-0 rounded-3xl border-2 border-cyan-400/40 animate-pulse blur-md"></div>
         </motion.div>
+
+        {/* Text Content */}
+        <div className="text-center md:text-left max-w-xl">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
+            Hi, I’m{" "}
+            <span className="text-cyan-400">
+              <Typewriter
+                words={[
+                  "Frank",
+                  "a Developer",
+                  "a Creator",
+                  "a Problem Solver",
+                ]}
+                loop={true}
+                cursor
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+            </span>
+          </h1>
+
+          <motion.p
+            className="mt-4 text-lg md:text-2xl text-gray-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            Full-Stack Developer | MERN Enthusiast | Creative Builder
+          </motion.p>
+
+          <motion.p
+            className="mt-6 text-gray-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            I design and build modern web apps with stunning user experiences,
+            blending creativity with performance. Passionate about
+            problem-solving and turning ideas into reality.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="mt-8 flex flex-col md:flex-row gap-4 justify-center md:justify-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3 }}
+          >
+            <Link
+              to="/projects"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 text-black rounded-full font-semibold shadow-lg hover:bg-cyan-400 transition"
+            >
+              <FolderKanban size={20} />
+              View Projects
+            </Link>
+
+            <Link
+              to="/contact"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-black text-cyan-400 border border-cyan-400 rounded-full font-semibold shadow-lg hover:bg-cyan-900 transition"
+            >
+              <Mail size={20} />
+              Contact Me
+            </Link>
+          </motion.div>
+        </div>
       </motion.div>
 
-      {/* What I Do Section */}
-      <motion.div
-        className="relative z-10 mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.6 }}
-      >
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg text-white hover:scale-105 transition">
-          <Code2 className="mx-auto mb-4" size={32} />
-          <h3 className="font-bold text-lg">Web Development</h3>
-          <p className="text-sm mt-2">Building scalable MERN stack apps with clean code & great UX.</p>
-        </div>
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg text-white hover:scale-105 transition">
-          <Palette className="mx-auto mb-4" size={32} />
-          <h3 className="font-bold text-lg">UI/UX Design</h3>
-          <p className="text-sm mt-2">Crafting sleek, user-friendly interfaces powered by TailwindCSS.</p>
-        </div>
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg text-white hover:scale-105 transition">
-          <Rocket className="mx-auto mb-4" size={32} />
-          <h3 className="font-bold text-lg">Performance & Deploy</h3>
-          <p className="text-sm mt-2">Optimizing apps for speed, SEO & seamless deployment.</p>
-        </div>
-      </motion.div>
+      {/* ---------------- About Preview ---------------- */}
+      <section className="relative z-10 mt-32 max-w-3xl text-center">
+        <h2 className="text-3xl font-bold text-cyan-400">About Me</h2>
+        <p className="mt-4 text-gray-300">
+          I’m a passionate developer who loves blending creativity with code to
+          build digital products that make an impact.
+        </p>
+        <Link
+          to="/about"
+          className="mt-6 inline-block px-5 py-2 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400 hover:text-black transition"
+        >
+          Learn More
+        </Link>
+      </section>
 
-      {/* Scroll Down Indicator */}
+      {/* ---------------- Featured Projects ---------------- */}
+      <section className="relative z-10 mt-32 max-w-6xl w-full">
+        <h2 className="text-3xl font-bold text-cyan-400 text-center">
+          Featured Projects
+        </h2>
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-black/60 border border-cyan-400/40 shadow-lg rounded-2xl p-6 hover:scale-105 transition">
+            <Code2 className="w-10 h-10 mx-auto text-cyan-400" />
+            <h3 className="mt-4 text-xl font-semibold">Project One</h3>
+            <p className="text-gray-400 mt-2">Short description here...</p>
+          </div>
+          <div className="bg-black/60 border border-cyan-400/40 shadow-lg rounded-2xl p-6 hover:scale-105 transition">
+            <Sparkles className="w-10 h-10 mx-auto text-cyan-400" />
+            <h3 className="mt-4 text-xl font-semibold">Project Two</h3>
+            <p className="text-gray-400 mt-2">Short description here...</p>
+          </div>
+          <div className="bg-black/60 border border-cyan-400/40 shadow-lg rounded-2xl p-6 hover:scale-105 transition">
+            <ArrowRight className="w-10 h-10 mx-auto text-cyan-400" />
+            <h3 className="mt-4 text-xl font-semibold">Project Three</h3>
+            <p className="text-gray-400 mt-2">Short description here...</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Skills Snapshot ---------------- */}
+      <section className="relative z-10 mt-32 max-w-4xl text-center">
+        <h2 className="text-3xl font-bold text-cyan-400">Tech I Use</h2>
+        <div className="mt-8 flex justify-center gap-6 flex-wrap">
+          {["React ⚛️", "Node.js 🌿", "MongoDB 🍃", "Tailwind 🎨"].map(
+            (skill, i) => (
+              <span
+                key={i}
+                className="px-6 py-3 bg-black/50 border border-cyan-400/30 rounded-xl font-semibold shadow hover:scale-110 transition"
+              >
+                {skill}
+              </span>
+            )
+          )}
+        </div>
+      </section>
+
+      {/* ---------------- Call to Action ---------------- */}
+      <section className="relative z-10 mt-32 text-center">
+        <h2 className="text-3xl font-bold text-cyan-400">
+          Let’s Build Something Legendary 🚀
+        </h2>
+        <p className="mt-4 text-gray-300">
+          Have an idea or project in mind? Let’s connect.
+        </p>
+        <Link
+          to="/contact"
+          className="mt-6 inline-block px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:scale-110 transition"
+        >
+          Contact Me
+        </Link>
+      </section>
+
+      {/* ---------------- Scroll Down Indicator ---------------- */}
       <motion.div
-        className="absolute bottom-10 text-white text-sm opacity-75 animate-bounce"
+        className="absolute bottom-10 text-cyan-400 text-sm opacity-75 animate-bounce"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}

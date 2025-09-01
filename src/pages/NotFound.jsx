@@ -49,20 +49,20 @@ const NotFound = () => {
       />
 
       {/* Glass card */}
-      <div className="relative z-10 text-center px-8 py-12 bg-white bg-opacity-10 backdrop-blur-md rounded-2xl shadow-2xl max-w-lg mx-auto border border-white border-opacity-20">
+      <div className="relative z-10 text-center px-8 py-12 mt-16 bg-white bg-opacity-10 backdrop-blur-md rounded-2xl shadow-2xl max-w-lg mx-auto border border-white border-opacity-20">
         <img
-          src="/images/Beauty-logo.jpg"
+          src="./frank-Logo-only.png"
           alt="Logo"
           className="w-16 h-16 mx-auto mb-4 opacity-80 rounded"
         />
-        <h1 className="text-7xl font-black text-pink-500 tracking-wide mb-4">404</h1>
+        <h1 className="text-7xl font-black text-cyan-500 tracking-wide mb-4">404</h1>
         <h2 className="text-3xl text-black font-semibold mb-2">Oops! Page not found</h2>
         <p className="text-base text-gray-600 mb-6">
           The page you’re looking for doesn’t exist, was moved, or is temporarily unavailable.
         </p>
         <Link
           to="/"
-          className="inline-block px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-semibold rounded-lg transition duration-300 shadow-lg"
+          className="inline-block px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-lg transition duration-300 shadow-lg"
         >
           Return Home
         </Link>
