@@ -4,16 +4,10 @@ import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import NET from "vanta/dist/vanta.net.min";
 import * as THREE from "three";
-import {
-  FolderKanban,
-  Mail,
-  Code2,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
+import { FolderKanban, Mail, Code2, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SplashCursor from "../components/SplashCursor";
-import Tilt from "react-parallax-tilt";
+import CircularGallery from "../components/CircularGallery";
 
 const Home = () => {
   const vantaRef = useRef(null);
@@ -63,15 +57,21 @@ const Home = () => {
         className="relative z-10 max-w-6xl w-full flex flex-col md:flex-row items-center justify-center gap-12"
       >
         {/* Profile Image */}
-
-        {/* Profile Image */}
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
           className="relative"
         >
-          <Tilt
+          <div style={{ height: "400px", width: "600px", position: "relative" }}>
+            <CircularGallery
+              bend={3}
+              textColor="#ffffff"
+              borderRadius={0.05}
+              scrollEase={0.02}
+            />
+          </div>
+          {/* <Tilt
             glareEnable={true}
             glareMaxOpacity={0.45}
             glareColor="#00ffff"
@@ -87,7 +87,7 @@ const Home = () => {
                 className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
               />
             </div>
-          </Tilt>
+          </Tilt> */}
 
           {/* Glowing ring */}
           <div className="absolute inset-0 rounded-3xl border-2 border-cyan-400/40 animate-pulse blur-md"></div>
