@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView, animate } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import NET from "vanta/dist/vanta.net.min";
 import * as THREE from "three";
@@ -8,6 +8,27 @@ import { FolderKanban, Mail, Code2, Sparkles, ArrowRight, Lightbulb, PenTool, Te
 import { Link } from "react-router-dom";
 import SplashCursor from "../components/SplashCursor";
 import CircularGallery from "../components/CircularGallery";
+
+const AnimatedCounter = ({ from = 0, to, suffix = "", duration = 2 }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(from, to, {
+        duration,
+        onUpdate(value) {
+          if (ref.current) {
+            ref.current.textContent = Math.round(value) + suffix;
+          }
+        },
+      });
+      return () => controls.stop();
+    }
+  }, [inView, from, to, duration, suffix]);
+
+  return <span ref={ref}>{from}{suffix}</span>;
+};
 
 const Home = () => {
   const vantaRef = useRef(null);
@@ -233,10 +254,10 @@ const Home = () => {
       <section className="relative z-10 mt-32 max-w-6xl w-full">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { icon: Users, count: "50+", label: "Happy Clients" },
-            { icon: FolderKanban, count: "120+", label: "Projects Done" },
-            { icon: Award, count: "5+", label: "Years Experience" },
-            { icon: Star, count: "100%", label: "Satisfaction" },
+            { icon: Users, count: 15, suffix: "+", label: "Happy Clients" },
+            { icon: FolderKanban, count: 25, suffix: "+", label: "Projects Done" },
+            { icon: Award, count: 4, suffix: "+", label: "Years Experience" },
+            { icon: Star, count: 100, suffix: "%", label: "Satisfaction" },
           ].map((stat, i) => (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -247,7 +268,9 @@ const Home = () => {
               className="bg-black/40 border border-white/5 p-8 rounded-3xl text-center flex flex-col items-center hover:border-cyan-500/50 hover:bg-black/60 shadow-lg hover:shadow-[0_0_30px_rgba(0,255,255,0.15)] transition-all group"
             >
               <stat.icon className="w-12 h-12 text-cyan-500 mb-5 group-hover:scale-110 group-hover:text-cyan-300 transition-transform duration-300" />
-              <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">{stat.count}</h3>
+              <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
+                <AnimatedCounter from={0} to={stat.count} suffix={stat.suffix} duration={2} />
+              </h3>
               <p className="text-gray-400 font-medium tracking-widest uppercase text-xs md:text-sm">{stat.label}</p>
             </motion.div>
           ))}

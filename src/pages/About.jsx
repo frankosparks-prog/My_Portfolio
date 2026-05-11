@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { User, Award, Code, Rocket } from "lucide-react";
+import { User, Award, Code, Rocket, Briefcase, GraduationCap, Gamepad2, BookOpen, Music, Heart } from "lucide-react";
 import SplashCursor from "../components/SplashCursor";
 
 const About = () => {
@@ -44,7 +44,7 @@ const About = () => {
 
           {/* Avatar Image */}
           <img
-            src="./me.jpg" // <-- replace with your profile image
+            src="./Frank.png"
             alt="Frank Ndiritu Maina"
             className="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-gray-800 shadow-xl object-cover"
           />
@@ -69,25 +69,12 @@ const About = () => {
             I also possess robust ICT support capabilities, from computer hardware troubleshooting and software configuration to network basics and user technical support.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <span className="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm">
-              JavaScript / Python
-            </span>
-            <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-              Java / C# / C
-            </span>
-            <span className="px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
-              React.js & Node.js
-            </span>
-            <span className="px-4 py-2 bg-pink-500/20 text-pink-300 rounded-full text-sm">
-              MySQL & MongoDB
-            </span>
-            <span className="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">
-              Git & REST APIs
-            </span>
-            <span className="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-              ICT Support
-            </span>
+          <div className="mt-6 flex flex-col gap-3 text-sm bg-black/30 p-4 rounded-xl border border-white/5">
+            <p><span className="text-teal-400 font-bold tracking-wider uppercase text-xs">Languages:</span> <span className="text-gray-300 ml-2">JavaScript, C#, C, Python, Java</span></p>
+            <p><span className="text-blue-400 font-bold tracking-wider uppercase text-xs">Web Dev:</span> <span className="text-gray-300 ml-2">HTML, CSS, React.js, Express.js, Node.js</span></p>
+            <p><span className="text-indigo-400 font-bold tracking-wider uppercase text-xs">Databases:</span> <span className="text-gray-300 ml-2">MySQL, MongoDB</span></p>
+            <p><span className="text-pink-400 font-bold tracking-wider uppercase text-xs">Tools:</span> <span className="text-gray-300 ml-2">Git, VS Code, REST APIs, Windows, Linux</span></p>
+            <p><span className="text-yellow-400 font-bold tracking-wider uppercase text-xs">Other:</span> <span className="text-gray-300 ml-2">Software Debugging & Testing, System Troubleshooting, Cybersecurity, Project Management</span></p>
           </div>
         </motion.div>
 
@@ -99,39 +86,117 @@ const About = () => {
           className="bg-white/5 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-white/10"
         >
           <h2 className="text-2xl font-bold text-blue-400 mb-6 flex items-center gap-2">
-            <Rocket className="w-6 h-6 text-blue-400" /> Education & Goals
+            <Rocket className="w-6 h-6 text-blue-400" /> Projects & Goals
           </h2>
           <ul className="space-y-4 text-gray-300">
             <li className="flex items-start gap-3">
-              <Award className="w-5 h-5 text-teal-400 mt-1" />
+              <Code className="w-5 h-5 text-teal-400 mt-1" />
               <p>
-                <span className="text-white font-semibold">BSc Computer Science:</span>{" "}
-                Egerton University, Nakuru (2022 – Expected Nov 2026).
+                <span className="text-white font-semibold">Online Store App:</span>{" "}
+                Developed a full-stack e-commerce site with React, Node.js, Express & MongoDB. Handled frontend design, APIs, and DB operations.
               </p>
             </li>
             <li className="flex items-start gap-3">
-              <Code className="w-5 h-5 text-blue-400 mt-1" />
+              <Briefcase className="w-5 h-5 text-blue-400 mt-1" />
               <p>
-                <span className="text-white font-semibold">Secondary Education:</span>{" "}
-                St Mary’s Boys Secondary School, Nyeri (2018 – 2021) - B+ Aggregate.
-              </p>
-            </li>
-            <li className="flex items-start gap-3">
-              <Rocket className="w-5 h-5 text-pink-400 mt-1" />
-              <p>
-                <span className="text-white font-semibold">Objective:</span>{" "}
-                Seeking an internship or entry-level ICT opportunity to apply my technical skills, gain hands-on industry experience, and contribute to technology-driven solutions.
+                <span className="text-white font-semibold">ERP System:</span>{" "}
+                Built an Enterprise Resource Planning system for a water service company with role-based permissions and departmental interfaces using React & MySQL.
               </p>
             </li>
             <li className="flex items-start gap-3">
               <User className="w-5 h-5 text-yellow-400 mt-1" />
               <p>
-                <span className="text-white font-semibold">Competencies:</span> Software debugging & testing, system troubleshooting, team collaboration, and basic cybersecurity practices.
+                <span className="text-white font-semibold">Team Projects:</span>{" "}
+                Served as Project Manager during third-year software development projects. Contributed to system design, coding, testing, and coordination.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <Rocket className="w-5 h-5 text-pink-400 mt-1" />
+              <p>
+                <span className="text-white font-semibold">Focus:</span>{" "}
+                Dedicated to engineering robust, scalable software solutions and applying exceptional problem-solving expertise to tackle complex technical challenges and drive continuous innovation.
               </p>
             </li>
           </ul>
         </motion.div>
       </div>
+
+      {/* ---------- MY JOURNEY TIMELINE ---------- */}
+      <div className="mt-24 max-w-4xl mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center text-teal-400 mb-12"
+        >
+          My Journey
+        </motion.h2>
+        
+        <div className="relative border-l-4 border-gray-700 ml-6 md:ml-12 space-y-12 pb-8">
+          {[
+            { year: "2022 - Present", title: "BSc Computer Science", org: "Egerton University", desc: "Motivated final-year student. Expected to graduate in November 2026 with a strong foundation in software development and database management.", icon: GraduationCap, color: "text-blue-400", bg: "bg-blue-500/20" },
+            { year: "2018 - 2021", title: "Kenya Certificate of Secondary Education", org: "St Mary's Boys Secondary School, Nyeri", desc: "Graduated with a B+ (70 points) aggregate.", icon: Award, color: "text-teal-400", bg: "bg-teal-500/20" },
+            { year: "Upto 2017", title: "Kenya Certificate of Primary Education", org: "Gacio Junior Academy", desc: "Obtained 400 marks out of 500.", icon: BookOpen, color: "text-purple-400", bg: "bg-purple-500/20" },
+          ].map((item, i) => (
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+              key={i} 
+              className="relative pl-8 md:pl-12 group"
+            >
+              {/* Timeline Dot */}
+              <div className={`absolute -left-[26px] top-1 w-12 h-12 rounded-full ${item.bg} border-4 border-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(0,255,255,0.2)]`}>
+                <item.icon className={`w-5 h-5 ${item.color}`} />
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-lg hover:border-teal-400/50 transition-colors">
+                <span className={`text-sm font-bold uppercase tracking-wider ${item.color} mb-2 block`}>{item.year}</span>
+                <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                <h4 className="text-md text-gray-400 font-medium mb-3">{item.org}</h4>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">{item.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ---------- BEYOND THE CODE ---------- */}
+      <div className="mt-24 max-w-6xl mx-auto pb-12">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center text-blue-400 mb-12"
+        >
+          Beyond The Code
+        </motion.h2>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { icon: BookOpen, title: "Continuous Learning", desc: "Always exploring new docs and tech articles." },
+            { icon: Gamepad2, title: "Gaming", desc: "Relaxing with strategic and story-rich games." },
+            { icon: Music, title: "Music", desc: "Listening to chill beats while debugging." },
+            { icon: Heart, title: "Community", desc: "Helping peers debug and sharing knowledge." },
+          ].map((hobby, i) => (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15 }}
+              key={i}
+              className="bg-black/40 border border-white/5 p-6 rounded-3xl text-center flex flex-col items-center hover:bg-white/5 hover:border-blue-400/50 transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all duration-300">
+                <hobby.icon className="w-8 h-8 text-blue-400 group-hover:text-blue-300" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">{hobby.title}</h3>
+              <p className="text-gray-400 text-sm">{hobby.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+        </div>
     </div>
   );
 };
