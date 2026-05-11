@@ -1,9 +1,9 @@
 // src/pages/Home.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import NET from "vanta/dist/vanta.net.min";
-import * as THREE from "three";
+import Particles from 'react-tsparticles';
+import { loadBasic } from 'tsparticles-basic';
 import { FolderKanban, Mail, Code2, Sparkles, ArrowRight, Lightbulb, PenTool, Terminal, Rocket, Users, Award, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import SplashCursor from "../components/SplashCursor";
@@ -31,44 +31,62 @@ const AnimatedCounter = ({ from = 0, to, suffix = "", duration = 2 }) => {
 };
 
 const Home = () => {
-  const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState(null);
-
-  // Initialize Vanta.js
-  useEffect(() => {
-    if (!vantaEffect) {
-      setVantaEffect(
-        NET({
-          el: vantaRef.current,
-          THREE: THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0,
-          color: 0x00ffff,
-          backgroundColor: 0x0a0a0a,
-          points: 12.0,
-          maxDistance: 20.0,
-          spacing: 18.0,
-        })
-      );
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
+  const particlesInit = async (engine) => {
+    await loadBasic(engine);
+  };
 
   return (
     <section
-      ref={vantaRef}
       className="relative min-h-screen flex flex-col items-center text-center px-6 pt-20 pb-20 overflow-hidden text-white"
+      style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop")',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed'
+      }}
     >
       <SplashCursor />
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-0"></div>
+      
+      {/* react-tsparticles implementation to perfectly match the reference site */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: false },
+          background: { color: { value: "transparent" } },
+          particles: {
+            number: { value: 80, density: { enable: true, area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: 3 },
+            move: { enable: true, speed: 2, direction: "none", random: false, straight: false, outModes: "out" },
+            links: {
+              enable: true,
+              color: "#ffffff",
+              distance: 150,
+              opacity: 0.4,
+              width: 1,
+            },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "grab" },
+              onClick: { enable: true, mode: "push" },
+              resize: true,
+            },
+            modes: {
+              grab: { distance: 140, links: { opacity: 1 } },
+              push: { quantity: 4 },
+            },
+          },
+          detectRetina: true,
+        }}
+        className="absolute inset-0 z-0 pointer-events-none"
+      />
+
+      {/* Dark Overlay - Adjusted to let the white network shine elegantly over the background image */}
+      <div className="absolute inset-0 bg-black/75 z-0 pointer-events-none"></div>
 
       {/* ---------------- Hero Section ---------------- */}
       <motion.div
