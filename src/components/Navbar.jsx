@@ -156,14 +156,50 @@
 
 // export default Navbar;
 
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Search, Home, User, FolderKanban, FileText, Mail } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Search, Home, User, FolderKanban, FileText, Mail, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    
+    const delayDebounceFn = setTimeout(async () => {
+      setIsSearching(true);
+      try {
+        const res = await fetch(`${SERVER_URL}/api/search?q=${encodeURIComponent(searchQuery)}`);
+        const data = await res.json();
+        setSearchResults(data);
+      } catch (err) {
+        console.error("Search failed", err);
+        setSearchResults([]);
+      } finally {
+        setIsSearching(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery]);
+
+  const handleResultClick = (url) => {
+    setShowSearch(false);
+    setSearchQuery("");
+    navigate(url);
+  };
 
   const navLinks = [
     {
@@ -198,11 +234,7 @@ const Navbar = () => {
     },
   ];
 
-  // Generate random spread positions
-  const randomPos = () => ({
-    x: Math.floor(Math.random() * 300 - 150), // -150 to +150
-    y: Math.floor(Math.random() * 500 - 250), // -250 to +250
-  });
+
 
   return (
     <>
@@ -274,17 +306,101 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Search Bar (Desktop) */}
+      {/* -------- SEARCH MODAL -------- */}
+      <AnimatePresence>
         {showSearch && (
-          <div className="absolute top-full inset-x-0 bg-white dark:bg-gray-900 shadow-md p-4 animate-fadeIn">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full p-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
+          <motion.div
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md flex flex-col items-center pt-32 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowSearch(false)}
+          >
+            {/* Modal Container */}
+            <motion.div
+              className="w-full max-w-2xl bg-gray-900 border border-cyan-500/40 shadow-2xl rounded-3xl p-6 relative"
+              initial={{ y: -50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: -20, opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-4 bg-black/40 px-5 py-4 rounded-2xl border border-gray-700/50 focus-within:border-cyan-500/80 transition-colors">
+                <Search className="text-cyan-400" size={24} />
+                <input
+                  type="text"
+                  placeholder="Search projects, blogs, or info..."
+                  className="w-full bg-transparent border-none outline-none text-white text-lg placeholder-gray-500"
+                  autoFocus
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {isSearching && (
+                  <div className="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+                )}
+                <button
+                  onClick={() => setShowSearch(false)}
+                  className="p-1.5 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Dynamic Search Results */}
+              <div className="mt-8 px-2 max-h-64 overflow-y-auto custom-scrollbar">
+                {!searchQuery.trim() ? (
+                  <>
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Quick Links</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {['React Projects', 'Tailwind Tricks', 'About Frank', 'Contact Info'].map((tag, i) => (
+                        <span 
+                          key={i} 
+                          onClick={() => setSearchQuery(tag)}
+                          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm text-gray-300 hover:bg-cyan-500/20 hover:text-cyan-300 hover:border-cyan-500/50 cursor-pointer transition-all"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                ) : searchResults.length > 0 ? (
+                  <div className="flex flex-col gap-3 pb-4">
+                    {searchResults.map((result, i) => (
+                      <div 
+                        key={i}
+                        onClick={() => handleResultClick(result.url)}
+                        className="p-4 bg-white/5 border border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 rounded-xl cursor-pointer transition-all group flex justify-between items-center"
+                      >
+                        <div>
+                          <h4 className="text-white font-semibold group-hover:text-cyan-400 transition-colors">{result.title}</h4>
+                          <p className="text-sm text-gray-400 mt-1 line-clamp-1">{result.description}</p>
+                        </div>
+                        <span className="text-xs px-2 py-1 bg-black/50 text-gray-300 rounded uppercase tracking-wider border border-gray-700">
+                          {result.type}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : !isSearching ? (
+                  <div className="text-center py-8">
+                    <p className="text-gray-400 mb-4">No exact matches found for "{searchQuery}".</p>
+                    <p className="text-sm text-gray-500 mb-6">Try exploring these sections instead:</p>
+                    <div className="flex justify-center gap-4">
+                      <button onClick={() => handleResultClick('/projects')} className="px-5 py-2 bg-indigo-500/20 text-indigo-300 rounded-full hover:bg-indigo-500/40 transition">Projects</button>
+                      <button onClick={() => handleResultClick('/blog')} className="px-5 py-2 bg-pink-500/20 text-pink-300 rounded-full hover:bg-pink-500/40 transition">Blogs</button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+              
+              <div className="absolute -bottom-10 left-0 right-0 text-center text-sm text-gray-500">
+                Press <span className="px-2 py-1 bg-white/10 rounded text-gray-300">Esc</span> or click outside to close
+              </div>
+            </motion.div>
+          </motion.div>
         )}
-      </nav>
+      </AnimatePresence>
+    </nav>
 
       {/* -------- MOBILE RANDOM BUBBLES MENU -------- */}
       {/* -------- MOBILE SIDEBAR MENU -------- */}

@@ -1,12 +1,11 @@
 import React from "react";
 import {
   Facebook,
-  Twitter,
   Instagram,
   Linkedin,
-  Youtube,
   Mail,
   Phone,
+  Github,
 } from "lucide-react";
 
 function Footer() {
@@ -16,10 +15,10 @@ function Footer() {
         {/* Brand */}
         <div>
           <h2 className="text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            Legendary
+            Frank Maina
           </h2>
           <p className="mt-3 text-gray-400 leading-relaxed">
-            Crafting legendary experiences with creativity, passion, and
+            Crafting scalable web experiences with creativity, passion, and
             innovation. 🌟
           </p>
         </div>
@@ -47,11 +46,11 @@ function Footer() {
           <ul className="mt-4 space-y-3">
             <li className="flex items-center gap-2 hover:text-cyan-400 transition">
               <Mail size={18} className="text-cyan-400" />
-              <span>info@legendary.com</span>
+              <a href="mailto:mainafrank400@gmail.com">mainafrank400@gmail.com</a>
             </li>
             <li className="flex items-center gap-2 hover:text-cyan-400 transition">
               <Phone size={18} className="text-cyan-400" />
-              <span>+254 700 123 456</span>
+              <a href="tel:+254111949314">+254 111949314</a>
             </li>
           </ul>
         </div>
@@ -60,11 +59,18 @@ function Footer() {
         <div>
           <h3 className="text-xl font-semibold text-cyan-300">Follow Us</h3>
           <div className="flex gap-5 mt-4">
-            {[Facebook, Twitter, Instagram, Linkedin, Youtube].map(
-              (Icon, idx) => (
+            {[
+              { icon: Facebook, link: "https://web.facebook.com/profile.php?id=100082668694004" },
+              { icon: Instagram, link: "https://www.instagram.com/frankmaina90/?hl=en" },
+              { icon: Linkedin, link: "https://www.linkedin.com/in/frank-maina-362323343" },
+              { icon: Github, link: "https://github.com/frankosparks-prog" }
+            ].map(
+              ({ icon: Icon, link }, idx) => (
                 <a
                   key={idx}
-                  href="#"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-2 rounded-full bg-white/5 hover:bg-cyan-500/20 transition transform hover:scale-125"
                 >
                   <Icon className="text-cyan-400 hover:text-cyan-300" />
@@ -79,14 +85,14 @@ function Footer() {
       <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500">
         <p>
           © {new Date().getFullYear()}{" "}
-          <span className="text-cyan-400 font-semibold">Legendary</span>. All
+          <span className="text-cyan-400 font-semibold">Frank Maina</span>. All
           rights reserved. 🚀
         </p>
       </div>
 
       {/* WhatsApp Floating Icon */}
       <a
-        href="https://wa.me/254700123456"
+        href="https://wa.me/254738380692"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full shadow-lg animate-bounce hover:scale-110 transition transform z-10"

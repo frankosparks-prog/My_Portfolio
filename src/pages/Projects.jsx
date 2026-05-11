@@ -5,68 +5,106 @@ import SplashCursor from "../components/SplashCursor";
 
 const projects = [
   {
-    title: "E-Commerce Website",
+    title: "ERP System",
     description:
-      "A full-stack MERN e-commerce platform with authentication, payments, and admin dashboard.",
-    image: "./frank-developers.png",
-    tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-    live: "https://your-ecommerce.com",
-    github: "https://github.com/yourusername/ecommerce",
+      "Enterprise Resource Planning system for a water service company with multi-user access and role-based permissions.",
+    image: "./LenanaLogo.jpg",
+    tech: ["React.js", "Node.js", "Express", "MySQL"],
+    live: "https://lenanadrops.com/",
+    github: "https://github.com/muneeni-ux/Lenana",
     category: "Full-Stack",
   },
   {
     title: "Portfolio Website",
     description:
-      "My personal legendary portfolio built with MERN + Tailwind + Framer Motion.",
+      "My personal professional portfolio built with MERN, Tailwind, and Framer Motion.",
     image: "./frank-Logo-only.png",
-    tech: ["React", "Express", "MongoDB", "Tailwind"],
+    tech: ["React.js", "Express", "MongoDB", "Tailwind"],
     live: "#",
-    github: "#",
+    github: "https://github.com/frankosparks-prog",
     category: "Frontend",
   },
   {
-    title: "AI Chatbot",
+    title: "Church Website",
     description:
-      "A chatbot using Node.js and OpenAI API, styled with Tailwind and deployed on Vercel.",
-    image: "./MyLogo.jpg",
-    tech: ["React", "Node.js", "OpenAI", "Tailwind"],
-    live: "https://your-chatbot.com",
-    github: "https://github.com/yourusername/chatbot",
-    category: "AI",
-  },
-  {
-    title: "Task Manager",
-    description:
-      "A sleek productivity app with drag-and-drop task boards and real-time syncing.",
-    image: "./frank-developers.png",
-    tech: ["React", "Redux", "Firebase", "Tailwind"],
-    live: "#",
-    github: "#",
+      "A church's informative website with clear event details as well as announcements, allows church members to access online resources.",
+    image: "./eusda-logo2.png",
+    tech: ["React.js", "Node.js", "Express", "MySQL"],
+    live: "https://eusda.co.ke",
+    github: "https://github.com/frankosparks-prog",
     category: "Full-Stack",
   },
   {
-    title: "Blog Platform",
+    title: "Smart Visitor Management System",
     description:
-      "A dynamic blogging platform with Markdown editor, authentication, and comments system.",
-    image: "./MyLogo.jpg",
-    tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-    live: "#",
-    github: "#",
+      "A visitor management system for a institutions with multi-user access and role-based permissions.",
+    image: "./VisiTrack-L51.png",
+    tech: ["React.js", "Node.js", "Express", "MySQL"],
+    live: "https://visitrack.magtrack.co.ke",
+    github: "https://github.com/muneeni-ux/Magnet-GatePass",
     category: "Full-Stack",
   },
   {
-    title: "Weather App",
+    title: "Collaborative Projects",
     description:
-      "A weather app with animated backgrounds, geolocation, and OpenWeather API integration.",
+      "Participated in team-based software development, contributing to system design, testing, and served as Project Manager.",
     image: "./frank-developers.png",
-    tech: ["React", "API", "Tailwind"],
+    tech: ["System Design", "Testing", "Management", "Agile"],
     live: "#",
     github: "#",
-    category: "Utilities",
+    category: "Management",
+  },
+  {
+    title: "Stock and Sales Management System",
+    description: "A manage stock and sales for retail businesses.",
+    image: "./greenworld1.png",
+    tech: ["React.js", "Node.js", "Express", "MongoDB"],
+    live: "http://greenhealthgarissa.co.ke/",
+    github: "https://github.com/frankosparks-prog/GreenWorld_Naks",
+    category: "Management",
+  },
+  {
+    title: "Complaints Management System",
+    description: "Manages complaints for public  institutions.",
+    image: "./MyLogo.jpg",
+    tech: ["HTML", "CSS", "Java", "JavaScript", "MySQL"],
+    live: "",
+    github: "https://github.com/frankosparks-prog/complaints-mgt-sys-servlets",
+    category: "Management",
+  }, 
+  {
+    title: "Online Store Application",
+    description:
+      "Designed frontend, implemented APIs, and integrated database operations for product management.",
+    image: "./pak-circle.png",
+    tech: ["React.js", "Node.js", "Express", "MongoDB"],
+    live: "https://pakfashions.co.ke",
+    github: "https://github.com/frankosparks-prog/Pak-fashion",
+    category: "Full-Stack",
+  },
+  {
+    title: "NutriPay",
+    description:
+      "A food ordering and delivery system with payment integration handled under Stellar Ledgers.",
+    image: "https://nutripay.co.ke/NutriPay.svg",
+    tech: ["React.js", "Node.js", "Express", "MongoDB", "Stellar Ledgers"],
+    live: "https://nutripay.co.ke",
+    github: "https://github.com/frankosparks-prog",
+    category: "Full-Stack",
+  },
+    {
+    title: "Jadi Craft",
+    description:
+      "An AI Powered platform reconnecting communities and generations to cultural stories and crafts.",
+    image: "./logo.jpg",
+    tech: ["Node.js", "Socket.IO", "React.js", "Tailwind", "MySQl"],
+    live: "",
+    github: "https://github.com/frankosparks-prog/jadi_craft_ai_app",
+    category: "Full-Stack",
   },
 ];
 
-const categories = ["All", "Full-Stack", "Frontend", "AI", "Utilities"];
+const categories = ["All", "Full-Stack", "Frontend", "Management"];
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");

@@ -28,10 +28,7 @@ const About = () => {
         <span className="text-teal-400 font-bold font-orbitron">
           Frank Ndiritu Maina
         </span>
-        , a passionate full-stack developer driven by creativity and innovation.
-        I love crafting modern web applications, systems and mobile applications
-        that blend <span className="text-blue-400">design</span> with{" "}
-        <span className="text-teal-300">functionality</span>.
+        , a motivated final-year Computer Science student at Egerton University with a strong foundation in <span className="text-blue-400">software development</span>, <span className="text-teal-300">database management</span>, and basic cybersecurity practices.
       </motion.p>
 
       {/* ---------- AVATAR CARD ---------- */}
@@ -67,25 +64,29 @@ const About = () => {
             <User className="w-6 h-6 text-teal-400" /> Who I Am
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            A curious learner and builder with a deep love for technology. I
-            specialize in building beautiful, scalable applications using the{" "}
-            <span className="text-blue-400 font-semibold">MERN stack</span> and
-            bringing ideas to life with
-            <span className="text-teal-300 font-semibold"> Tailwind CSS</span>.
+            I am a builder and a learner, experienced in developing practical applications using modern technologies and collaborating in team-based software projects. I specialize in building full-stack applications using the{" "}
+            <span className="text-blue-400 font-semibold">MERN stack</span> and <span className="text-cyan-400 font-semibold">MySQL</span>.
+            I also possess robust ICT support capabilities, from computer hardware troubleshooting and software configuration to network basics and user technical support.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <span className="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm">
-              React
+              JavaScript / Python
             </span>
             <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-              Node.js
+              Java / C# / C
             </span>
             <span className="px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
-              MongoDB
+              React.js & Node.js
             </span>
             <span className="px-4 py-2 bg-pink-500/20 text-pink-300 rounded-full text-sm">
-              Tailwind CSS
+              MySQL & MongoDB
+            </span>
+            <span className="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">
+              Git & REST APIs
+            </span>
+            <span className="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
+              ICT Support
             </span>
           </div>
         </motion.div>
@@ -98,29 +99,34 @@ const About = () => {
           className="bg-white/5 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-white/10"
         >
           <h2 className="text-2xl font-bold text-blue-400 mb-6 flex items-center gap-2">
-            <Rocket className="w-6 h-6 text-blue-400" /> My Journey
+            <Rocket className="w-6 h-6 text-blue-400" /> Education & Goals
           </h2>
           <ul className="space-y-4 text-gray-300">
             <li className="flex items-start gap-3">
               <Award className="w-5 h-5 text-teal-400 mt-1" />
               <p>
-                <span className="text-white font-semibold">Problem-Solver:</span>{" "}
-                Always eager to tackle challenges and explore new tech.
+                <span className="text-white font-semibold">BSc Computer Science:</span>{" "}
+                Egerton University, Nakuru (2022 – Expected Nov 2026).
               </p>
             </li>
             <li className="flex items-start gap-3">
               <Code className="w-5 h-5 text-blue-400 mt-1" />
               <p>
-                <span className="text-white font-semibold">Full-Stack Dev:</span>{" "}
-                Skilled in frontend & backend, crafting smooth digital
-                experiences.
+                <span className="text-white font-semibold">Secondary Education:</span>{" "}
+                St Mary’s Boys Secondary School, Nyeri (2018 – 2021) - B+ Aggregate.
               </p>
             </li>
             <li className="flex items-start gap-3">
               <Rocket className="w-5 h-5 text-pink-400 mt-1" />
               <p>
-                <span className="text-white font-semibold">Visionary:</span> On
-                a mission to build impactful and legendary projects.
+                <span className="text-white font-semibold">Objective:</span>{" "}
+                Seeking an internship or entry-level ICT opportunity to apply my technical skills, gain hands-on industry experience, and contribute to technology-driven solutions.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <User className="w-5 h-5 text-yellow-400 mt-1" />
+              <p>
+                <span className="text-white font-semibold">Competencies:</span> Software debugging & testing, system troubleshooting, team collaboration, and basic cybersecurity practices.
               </p>
             </li>
           </ul>

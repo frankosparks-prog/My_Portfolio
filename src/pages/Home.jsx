@@ -184,18 +184,18 @@ const Home = () => {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-black/60 border border-cyan-400/40 shadow-lg rounded-2xl p-6 hover:scale-105 transition">
             <Code2 className="w-10 h-10 mx-auto text-cyan-400" />
-            <h3 className="mt-4 text-xl font-semibold">Project One</h3>
-            <p className="text-gray-400 mt-2">Short description here...</p>
+            <h3 className="mt-4 text-xl font-semibold">Online Store</h3>
+            <p className="text-gray-400 mt-2">Full-stack E-Commerce platform built with the MERN stack and robust API integrations.</p>
           </div>
           <div className="bg-black/60 border border-cyan-400/40 shadow-lg rounded-2xl p-6 hover:scale-105 transition">
             <Sparkles className="w-10 h-10 mx-auto text-cyan-400" />
-            <h3 className="mt-4 text-xl font-semibold">Project Two</h3>
-            <p className="text-gray-400 mt-2">Short description here...</p>
+            <h3 className="mt-4 text-xl font-semibold">ERP System</h3>
+            <p className="text-gray-400 mt-2">Multi-user Enterprise Resource Planning system for water services with role-based access.</p>
           </div>
           <div className="bg-black/60 border border-cyan-400/40 shadow-lg rounded-2xl p-6 hover:scale-105 transition">
             <ArrowRight className="w-10 h-10 mx-auto text-cyan-400" />
-            <h3 className="mt-4 text-xl font-semibold">Project Three</h3>
-            <p className="text-gray-400 mt-2">Short description here...</p>
+            <h3 className="mt-4 text-xl font-semibold">Team Projects</h3>
+            <p className="text-gray-400 mt-2">Lead and contributed to collaborative software projects using agile methodologies.</p>
           </div>
         </div>
       </section>
@@ -204,7 +204,7 @@ const Home = () => {
       <section className="relative z-10 mt-32 max-w-4xl text-center">
         <h2 className="text-3xl font-bold text-cyan-400">Tech I Use</h2>
         <div className="mt-8 flex justify-center gap-6 flex-wrap">
-          {["React ⚛️", "Node.js 🌿", "MongoDB 🍃", "Tailwind 🎨"].map(
+          {["React ⚛️", "Node.js 🌿", "MongoDB 🍃", "Tailwind 🎨", "MySQL 🐬", "Python 🐍"].map(
             (skill, i) => (
               <span
                 key={i}
@@ -233,7 +233,7 @@ const Home = () => {
         </Link>
       </section>
 
-      {/* ---------------- Scroll Down Indicator ---------------- */}
+      {/* ---------------- Scroll Down Indicator ---------------- 
       <motion.div
         className="absolute bottom-10 text-cyan-400 text-sm opacity-75 animate-bounce"
         initial={{ opacity: 0 }}
@@ -241,7 +241,7 @@ const Home = () => {
         transition={{ delay: 2 }}
       >
         ↓ Scroll Down
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };

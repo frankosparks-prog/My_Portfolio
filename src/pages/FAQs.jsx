@@ -7,24 +7,24 @@ function FAQs() {
 
   const faqs = [
     {
-      question: "What is Legendary all about?",
+      question: "What is this portfolio all about?",
       answer:
-        "Legendary is a platform built to inspire, share projects, blogs, and connect with like-minded individuals while keeping everything visually stunning and functional.",
+        "This portfolio is a showcase of my web development journey, featuring projects, insights, and tools I use to build scalable applications.",
     },
     {
-      question: "How can I contribute?",
+      question: "Are you available for freelance work?",
       answer:
-        "You can contribute by sharing your projects, writing blogs, engaging with the community, or supporting us through donations and partnerships.",
+        "Yes! I am always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
     },
     {
-      question: "Do you have a mobile version?",
+      question: "What tech stack do you specialize in?",
       answer:
-        "Yes, our site is fully responsive, and we’re working on a mobile app for an even smoother experience.",
+        "I primarily specialize in the MERN stack (MongoDB, Express, React, Node.js), but I also work heavily with MySQL, Python, and Tailwind CSS for robust solutions.",
     },
     {
-      question: "How can I reach you?",
+      question: "How can I get in touch with you?",
       answer:
-        "You can head over to the Contact Us page, where you’ll find email, WhatsApp, and other ways to connect with us.",
+        "You can reach out to me via the Contact page, drop me an email, or send a message directly on WhatsApp.",
     },
   ];
 
@@ -42,7 +42,7 @@ function FAQs() {
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
           Got questions? We’ve got answers. Here’s everything you need to know
-          about Legendary.
+          about my work and process.
         </p>
       </div>
 
