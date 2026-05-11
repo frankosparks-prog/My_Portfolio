@@ -141,7 +141,8 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "http://192.168.101.234:3000",
-  "https://my-portfolio-lhut.onrender.com", // Added Render production URL
+  "https://my-portfolio-lhut.onrender.com",
+  "https://my-portfolio-backend-qxex.onrender.com", // Added Render production URL
 ];
 
 app.use(cors({
