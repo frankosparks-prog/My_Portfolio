@@ -281,7 +281,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             {/* Search Icon */}
             <button
-              className="hidden md:flex text-gray-700 dark:text-gray-300 hover:text-indigo-500 transition border border-gray-200/20 dark:border-gray-500/20 px-4 py-4 hover:shadow-lg backdrop-blur-md rounded-full"
+              className="flex text-gray-700 dark:text-gray-300 hover:text-indigo-500 transition border border-gray-200/20 dark:border-gray-500/20 p-2 md:px-4 md:py-4 hover:shadow-lg backdrop-blur-md rounded-full"
               onClick={() => setShowSearch(!showSearch)}
             >
               <Search size={22} />
@@ -436,12 +436,19 @@ const Navbar = () => {
 
               {/* Search */}
               <div className="mb-6">
-                <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+                <div 
+                  className="flex items-center bg-gray-800 rounded-lg px-3 py-2 cursor-text"
+                  onClick={() => {
+                    setShowMenu(false);
+                    setShowSearch(true);
+                  }}
+                >
                   <Search className="text-gray-400 mr-2" size={18} />
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="w-full bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
+                    className="w-full bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none cursor-pointer pointer-events-none"
+                    readOnly
                   />
                 </div>
               </div>
