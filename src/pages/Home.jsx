@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import NET from "vanta/dist/vanta.net.min";
 import * as THREE from "three";
-import { FolderKanban, Mail, Code2, Sparkles, ArrowRight } from "lucide-react";
+import { FolderKanban, Mail, Code2, Sparkles, ArrowRight, Lightbulb, PenTool, Terminal, Rocket, Users, Award, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import SplashCursor from "../components/SplashCursor";
 import CircularGallery from "../components/CircularGallery";
@@ -202,18 +202,93 @@ const Home = () => {
 
       {/* ---------------- Skills Snapshot ---------------- */}
       <section className="relative z-10 mt-32 max-w-4xl text-center">
-        <h2 className="text-3xl font-bold text-cyan-400">Tech I Use</h2>
-        <div className="mt-8 flex justify-center gap-6 flex-wrap">
-          {["React ⚛️", "Node.js 🌿", "MongoDB 🍃", "Tailwind 🎨", "MySQL 🐬", "Python 🐍"].map(
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500"
+        >
+          Tech Arsenal
+        </motion.h2>
+        <div className="mt-10 flex justify-center gap-6 flex-wrap">
+          {["React ⚛️", "Node.js 🌿", "MongoDB 🍃", "Tailwind 🎨", "MySQL 🐬", "Python 🐍", "Next.js 🚀", "TypeScript 🛡️"].map(
             (skill, i) => (
-              <span
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.1, rotate: 2 }}
                 key={i}
-                className="px-6 py-3 bg-black/50 border border-cyan-400/30 rounded-xl font-semibold shadow hover:scale-110 transition"
+                className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-cyan-400/30 rounded-xl font-semibold shadow-[0_0_15px_rgba(0,255,255,0.05)] hover:shadow-[0_0_25px_rgba(0,255,255,0.4)] hover:border-cyan-400 transition-all cursor-default"
               >
                 {skill}
-              </span>
+              </motion.span>
             )
           )}
+        </div>
+      </section>
+
+      {/* ---------------- Milestones / Stats ---------------- */}
+      <section className="relative z-10 mt-32 max-w-6xl w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { icon: Users, count: "50+", label: "Happy Clients" },
+            { icon: FolderKanban, count: "120+", label: "Projects Done" },
+            { icon: Award, count: "5+", label: "Years Experience" },
+            { icon: Star, count: "100%", label: "Satisfaction" },
+          ].map((stat, i) => (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15 }}
+              key={i}
+              className="bg-black/40 border border-white/5 p-8 rounded-3xl text-center flex flex-col items-center hover:border-cyan-500/50 hover:bg-black/60 shadow-lg hover:shadow-[0_0_30px_rgba(0,255,255,0.15)] transition-all group"
+            >
+              <stat.icon className="w-12 h-12 text-cyan-500 mb-5 group-hover:scale-110 group-hover:text-cyan-300 transition-transform duration-300" />
+              <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">{stat.count}</h3>
+              <p className="text-gray-400 font-medium tracking-widest uppercase text-xs md:text-sm">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------------- Work Process ---------------- */}
+      <section className="relative z-10 mt-32 max-w-6xl w-full text-center">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-extrabold text-cyan-400 mb-16"
+        >
+          My Creative Process
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          {/* Connector Line */}
+          <div className="hidden md:block absolute top-1/2 left-[10%] w-[80%] h-0.5 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent -translate-y-1/2 z-0"></div>
+          
+          {[
+            { icon: Lightbulb, title: "1. Concept", desc: "Understanding the core requirements and brainstorming innovative ideas." },
+            { icon: PenTool, title: "2. Design", desc: "Crafting wireframes and designing stunning, intuitive user interfaces." },
+            { icon: Terminal, title: "3. Code", desc: "Building the application using robust, scalable, and modern technologies." },
+            { icon: Rocket, title: "4. Launch", desc: "Deploying the finished project and delivering it to the world seamlessly." }
+          ].map((step, i) => (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, type: "spring", stiffness: 100 }}
+              key={i}
+              className="relative z-10 flex flex-col items-center group"
+            >
+              <div className="w-24 h-24 rounded-full bg-black/80 border-2 border-gray-800 flex items-center justify-center mb-6 group-hover:border-cyan-400 group-hover:shadow-[0_0_40px_rgba(0,255,255,0.4)] transition-all duration-500 backdrop-blur-md">
+                <step.icon className="w-10 h-10 text-gray-500 group-hover:text-cyan-400 transition-colors duration-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">{step.title}</h3>
+              <p className="text-gray-400 text-sm max-w-[220px] leading-relaxed">{step.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
